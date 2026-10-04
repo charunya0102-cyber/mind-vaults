@@ -1,44 +1,53 @@
-# [Project name]
+# StudyMate
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A personal study manager for students to build and track their own syllabus, study materials, schedule, exams, tasks, focus sessions, and progress.
 
 ## Run & Operate
 
+- `pnpm --filter @workspace/studymate run dev` — run the StudyMate web app
+- `pnpm --filter @workspace/studymate run typecheck` — typecheck the web app
+- `PORT=5000 BASE_PATH=/ pnpm --filter @workspace/studymate run build` — create a production build
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+
+StudyMate runs as a local-first web app and does not currently require the API server or database.
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Frontend: React, Vite, TypeScript, Tailwind CSS
+- UI: Lucide icons and the workspace's shadcn-style components
+- Persistence: browser `localStorage`
+- Build: Vite static bundle
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/studymate/src/App.tsx` — StudyMate pages, data model, and interactions
+- `artifacts/studymate/src/index.css` — StudyMate visual theme and responsive styles
+- `artifacts/studymate/index.html` — document title and social metadata
+- `artifacts/api-server` and `lib/` — shared API/database workspace scaffolding; not used by StudyMate
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Start with empty academic content; never seed sample subjects, lessons, topics, or activity.
+- Keep student records in versioned browser storage so a student can use StudyMate without an account or external service.
+- Browser reminder notifications are optional and only fire while the app is open; due reminders are also visible in the app.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+StudyMate includes a home dashboard; editable subject, lesson, and topic tracking; notes; flashcards and revision; custom quizzes; a weekly timetable; exams; tasks and reminders; focus timers; a smart study planner; and progress tracking.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Keep all academic content student-created and the initial state completely empty.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Browser storage is specific to this browser/device and does not sync across devices. Clearing browser data removes the saved StudyMate records.
+- Browser notifications require the student's permission and cannot be delivered while the app is closed.
 
 ## Pointers
 
