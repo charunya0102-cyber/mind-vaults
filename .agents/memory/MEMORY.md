@@ -1,0 +1,1 @@
+- [StudyMate content integrity](studymate-content-integrity.md) — visual redesigns must preserve saved study data and never add sample academic content.

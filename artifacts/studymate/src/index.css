@@ -269,7 +269,7 @@
 }
 
 /* StudyMate — paper-and-pine, a calm workspace with a little warmth. */
-:root { color-scheme: light; }
+:root { color-scheme: dark; }
 * { box-sizing: border-box; }
 button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
@@ -943,4 +943,186 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+/* StudyMate's visual language: small worlds, one orbit, steady momentum. */
+@property --progress {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.metric-card { isolation:isolate; }
+.metric-mint .metric-value {
+  position:relative;
+  z-index:0;
+  width:max-content;
+  margin-left:5px;
+  padding:0 5px;
+}
+.metric-mint .metric-value::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-3px -3px;
+  border:1px solid rgba(90,204,217,.29);
+  border-radius:50%;
+  box-shadow:0 0 15px rgba(77,196,208,.1), inset 0 0 13px rgba(77,196,208,.06);
+  animation:study-pulse 3.8s ease-in-out infinite;
+}
+.progress-stat:first-child>strong {
+  position:relative;
+  z-index:0;
+  width:max-content;
+  margin-left:-5px;
+  padding:0 5px;
+}
+.progress-stat:first-child>strong::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-2px -3px;
+  border:1px solid rgba(90,204,217,.22);
+  border-radius:50%;
+  box-shadow:0 0 13px rgba(77,196,208,.08);
+  animation:study-pulse 3.8s ease-in-out infinite;
+}
+.metric-butter::after {
+  content:"";
+  position:absolute;
+  top:48px;
+  right:-17px;
+  width:66px;
+  height:66px;
+  border:1px solid rgba(219,182,132,.2);
+  border-radius:50%;
+  box-shadow:0 0 0 8px rgba(219,182,132,.045),0 0 0 19px rgba(177,155,219,.035);
+  pointer-events:none;
+  animation:momentum-orbit 6s ease-in-out infinite;
+}
+.metric-butter .metric-value,.metric-butter .metric-label,.metric-butter .metric-note { position:relative; z-index:1; }
+.mission-panel { border-top-color:rgba(154,129,229,.3); }
+.mission-panel .section-title h2 { letter-spacing:-.45px; }
+.mission-panel .section-title .eyebrow { color:#a99bda; }
+.milestone-panel { border-top-color:rgba(119,199,210,.25); }
+.milestone-panel .exam-feature {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(110deg,rgba(173,133,87,.13),rgba(31,38,57,.7) 58%,rgba(91,156,169,.08));
+  border-color:rgba(204,173,130,.2);
+  box-shadow:inset 0 1px rgba(255,255,255,.035),0 8px 22px rgba(0,0,0,.12);
+}
+.milestone-panel .exam-date { border:1px solid rgba(239,205,158,.17); }
+.milestone-panel .exam-date span { white-space:nowrap; }
+.is-done .task-main strong { transition:color .22s ease; }
+.task-main strong { transition:color .22s ease,opacity .22s ease; }
+.is-done .check-button { animation:mission-complete .32s cubic-bezier(.2,.8,.25,1); }
+.topic-status { transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+.topic-status:active { transform:scale(.9); }
+.topic-status.status-completed { animation:topic-complete .3s ease-out; box-shadow:0 0 13px rgba(86,196,171,.2); }
+.subject-card {
+  position:relative;
+  border-inline-start:2px solid hsl(var(--subject-hue) 63% 67% / .62);
+  background:linear-gradient(112deg,hsl(var(--subject-hue) 38% 31% / .13),rgba(24,28,46,.88) 38%);
+  transition:transform .22s ease,border-color .22s ease,background-color .22s ease,box-shadow .22s ease;
+}
+.subject-card:hover {
+  transform:translateY(-2px);
+  border-inline-start-color:hsl(var(--subject-hue) 74% 73% / .88);
+  box-shadow:0 16px 34px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.035);
+}
+.subject-letter {
+  color:hsl(var(--subject-hue) 78% 78%);
+  background:hsl(var(--subject-hue) 48% 32% / .42);
+  box-shadow:inset 0 0 0 1px hsl(var(--subject-hue) 70% 72% / .18),0 0 20px hsl(var(--subject-hue) 68% 58% / .1);
+}
+.subject-card .progress-track i { background:linear-gradient(90deg,hsl(var(--subject-hue) 65% 60%),hsl(calc(var(--subject-hue) + 24) 68% 70%)); }
+.subject-content { animation:world-open .26s ease-out both; }
+.large-progress-ring {
+  --orbit-radius:-54px;
+  transition:--progress .72s cubic-bezier(.2,.75,.22,1),filter .4s ease,box-shadow .4s ease;
+  filter:drop-shadow(0 0 10px rgba(82,201,213,.13));
+  box-shadow:0 0 0 1px rgba(180,174,228,.11);
+}
+.large-progress-ring::after {
+  content:"";
+  position:absolute;
+  z-index:3;
+  top:50%;
+  left:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#d9fbff;
+  box-shadow:0 0 8px 2px rgba(105,218,228,.6);
+  pointer-events:none;
+  transform-origin:0 0;
+  animation:study-orbit-travel 12s linear infinite;
+}
+.large-progress-ring>div { z-index:2; }
+.large-progress-ring>div>b { font-size:20px; line-height:1; }
+.large-progress-ring>div>b small { font-size:10px; }
+.large-progress-ring>div>span { color:#abb7d0; font-size:6px; font-weight:800; letter-spacing:1px; }
+.progress-hero>div:first-child>strong small { font-size:17px; }
+.timer-card { transition:border-color .28s ease,box-shadow .28s ease,background .28s ease; }
+.timer-card.is-running {
+  border-color:rgba(105,203,219,.28);
+  box-shadow:0 16px 45px rgba(0,0,0,.2),0 0 30px rgba(82,188,205,.07),inset 0 1px rgba(255,255,255,.035);
+}
+.timer-card.is-running .timer-dial::before {
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border:1px solid rgba(104,207,218,.16);
+  border-radius:50%;
+  pointer-events:none;
+  animation:timer-breathe 3.2s ease-in-out infinite;
+}
+.timer-card.is-running .dial-progress { filter:drop-shadow(0 0 7px rgba(122,113,239,.36)); }
+.bottom-link { transition:color .2s ease,text-shadow .2s ease,transform .2s ease; }
+.bottom-link.active { text-shadow:0 0 13px rgba(173,148,255,.24); }
+.nav-link.active { box-shadow:inset 2px 0 #a28bf0,0 0 20px rgba(130,100,213,.06); }
+
+@keyframes study-pulse {
+  0%,100% { opacity:.55; transform:scale(.97); }
+  50% { opacity:.95; transform:scale(1.035); }
+}
+@keyframes momentum-orbit {
+  0%,100% { opacity:.42; transform:scale(.97) rotate(-8deg); }
+  50% { opacity:.72; transform:scale(1.035) rotate(5deg); }
+}
+@keyframes study-orbit-travel {
+  from { transform:rotate(0deg) translateY(var(--orbit-radius)); }
+  to { transform:rotate(360deg) translateY(var(--orbit-radius)); }
+}
+@keyframes mission-complete {
+  0% { transform:scale(.88); }
+  65% { transform:scale(1.08); }
+  100% { transform:scale(1); }
+}
+@keyframes topic-complete {
+  0% { transform:scale(.86); }
+  72% { transform:scale(1.12); }
+  100% { transform:scale(1); }
+}
+@keyframes world-open {
+  from { opacity:0; transform:translateY(-4px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes timer-breathe {
+  0%,100% { opacity:.3; transform:scale(.99); }
+  50% { opacity:.82; transform:scale(1.015); }
+}
+
+@media (max-width:650px) {
+  .large-progress-ring { --orbit-radius:-42px; }
+  .large-progress-ring>div>b { font-size:17px; }
+  .metric-butter::after { top:47px; right:-24px; width:48px; height:48px; }
+  .milestone-panel .exam-feature { align-items:center; }
+  .mission-panel .section-title h2,.milestone-panel .section-title h2 { font-size:15px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .metric-mint .metric-value::before,.metric-butter::after,.large-progress-ring::after,
+  .topic-status.status-completed,.is-done .check-button,.subject-content,
+  .timer-card.is-running .timer-dial::before { animation:none; }
 }
